@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FragmentsDemo</string>
+    <string name="COMMON_TAG">COMMON_TAG</string>
 </resources>
