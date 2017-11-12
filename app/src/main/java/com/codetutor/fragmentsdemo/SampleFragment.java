@@ -15,73 +15,79 @@ import android.view.ViewGroup;
 
 public class SampleFragment extends Fragment {
 
-    private static final String TAG = SampleFragment.class.getSimpleName();
+    private static final String COMMON_TAG = "CombinedLifeCycle";
+    private static final String FRAGMENT_NAME = SampleFragment.class.getSimpleName();
+
+    private static final String TAG = COMMON_TAG;
+
+
+
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Log.i(TAG," onAttach");
+        Log.i(TAG, FRAGMENT_NAME +" onAttach");
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG," onCreate");
+        Log.i(TAG, FRAGMENT_NAME +" onCreate");
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        Log.i(TAG," onCreateView");
+        Log.i(TAG, FRAGMENT_NAME +" onCreateView");
         return inflater.inflate(R.layout.fragment_sample,container,false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        Log.i(TAG," onActivityCreated");
+        Log.i(TAG, FRAGMENT_NAME +" onActivityCreated");
         super.onActivityCreated(savedInstanceState);
     }
 
     @Override
     public void onStart() {
-        Log.i(TAG," onStart");
+        Log.i(TAG, FRAGMENT_NAME +" onStart");
         super.onStart();
     }
 
     @Override
     public void onResume() {
-        Log.i(TAG," onResume");
+        Log.i(TAG, FRAGMENT_NAME +" onResume");
         super.onResume();
     }
 
     @Override
     public void onPause() {
-        Log.i(TAG," onPause");
+        Log.i(TAG, FRAGMENT_NAME +" onPause");
         super.onPause();
     }
 
     @Override
     public void onStop() {
-        Log.i(TAG," onStop");
+        Log.i(TAG, FRAGMENT_NAME +" onStop");
         super.onStop();
     }
 
 
     @Override
     public void onDestroyView() {
-        Log.i(TAG," onDestroyView");
+        Log.i(TAG, FRAGMENT_NAME +" onDestroyView");
         super.onDestroyView();
     }
 
     @Override
     public void onDestroy() {
-        Log.i(TAG," onDestroy");
+        Log.i(TAG, FRAGMENT_NAME +" onDestroy");
         super.onDestroy();
     }
 
     @Override
     public void onDetach() {
-        Log.i(TAG," onDetach");
+        Log.i(TAG, FRAGMENT_NAME +" onDetach");
         super.onDetach();
     }
 }
