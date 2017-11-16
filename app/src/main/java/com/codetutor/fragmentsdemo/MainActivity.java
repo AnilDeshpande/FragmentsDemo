@@ -9,14 +9,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String COMMON_TAG = "CombinedLifeCycle";
     private static final String ACTIVITY_NAME = MainActivity.class.getSimpleName();
-    private static final String TAG = COMMON_TAG;
+    private static final String TAG = ACTIVITY_NAME;
 
-
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
     private Button buttonAddFragment;
 
@@ -27,7 +29,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       buttonAddFragment = (Button)findViewById(R.id.buttonAddFragment);
+        buttonAddFragment = (Button)findViewById(R.id.buttonAddFragment);
+        fragmentManager=getSupportFragmentManager();
+
+        fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                Toast.makeText(MainActivity.this,"Fragment count in back stack: "+fragmentManager.getBackStackEntryCount(),Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        Log.i(TAG,"Initial BackStackEntryCount: "+fragmentManager.getBackStackEntryCount());
+
 
         buttonAddFragment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,45 +49,44 @@ public class MainActivity extends AppCompatActivity {
                 addFragment();
             }
         });
-        Log.i(TAG, ACTIVITY_NAME+" onCreate");
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.i(TAG, ACTIVITY_NAME+" onStart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i(TAG, ACTIVITY_NAME+" onResume");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.i(TAG, ACTIVITY_NAME+" onPause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.i(TAG, ACTIVITY_NAME+" onStop");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.i(TAG, ACTIVITY_NAME+" onDestroy");
     }
 
     private void addFragment(){
         Fragment fragment=new SampleFragment();
-        FragmentManager fragmentManager=getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.fragmentContainer,fragment,"demofragment");
         fragmentTransaction.addToBackStack("fragmentStack1");
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
