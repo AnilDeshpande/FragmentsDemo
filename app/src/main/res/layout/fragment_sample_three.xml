@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:gravity="center"
-    android:background="@color/fragment_color">
+    android:layout_height="match_parent"
+    android:background="@color/fragment_three_color">
 
     <TextView
         android:layout_width="match_parent"
@@ -12,5 +12,6 @@
         android:gravity="center"
         android:textSize="100sp"
         android:layout_gravity="center_vertical|center_horizontal"
-        android:text="1" />
+        android:text="3" />
+
 </LinearLayout>

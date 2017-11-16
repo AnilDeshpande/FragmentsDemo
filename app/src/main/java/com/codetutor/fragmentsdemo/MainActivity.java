@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentTransaction fragmentTransaction;
 
     private Button buttonAddFragment;
+    private TextView textViewFragmentCount;
 
 
 
@@ -30,13 +32,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         buttonAddFragment = (Button)findViewById(R.id.buttonAddFragment);
+        textViewFragmentCount = (TextView)findViewById(R.id.textViewFragmentCount);
+
         fragmentManager=getSupportFragmentManager();
 
         fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
             @Override
             public void onBackStackChanged() {
-                Toast.makeText(MainActivity.this,"Fragment count in back stack: "+fragmentManager.getBackStackEntryCount(),Toast.LENGTH_SHORT).show();
-
+                textViewFragmentCount.setText("Fragment count in back stack: "+fragmentManager.getBackStackEntryCount());
             }
         });
 
@@ -78,7 +81,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addFragment(){
-        Fragment fragment=new SampleFragment();
+        Fragment fragment;
+        switch (fragmentManager.getBackStackEntryCount()){
+            case 0: fragment = new SampleFragment(); break;
+            case 1: fragment = new FragmentTwo();break;
+            case 2: fragment = new FragmentThree(); break;
+            default: fragment = new SampleFragment(); break;
+        }
         fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.fragmentContainer,fragment,"demofragment");
         fragmentTransaction.addToBackStack("fragmentStack1");
