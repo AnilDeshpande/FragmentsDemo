@@ -90,12 +90,7 @@ public class MainActivity extends AppCompatActivity {
         }
         fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.fragmentContainer,fragment,"demofragment");
-        fragmentTransaction.addToBackStack("fragmentStack1");
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
     }
 }
