@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentManager=getSupportFragmentManager();
 
+
+        textViewFragmentCount.setText("Fragment count in back stack: "+fragmentManager.getBackStackEntryCount());
+
         fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
             @Override
             public void onBackStackChanged() {
