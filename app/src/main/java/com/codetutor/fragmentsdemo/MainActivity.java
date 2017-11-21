@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final String COMMON_TAG = "CombinedLifeCycle";
     private static final String ACTIVITY_NAME = MainActivity.class.getSimpleName();
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
-    private Button buttonAddFragment;
+    private Button buttonAddFragmentOne, buttonAddFragmentTwo, buttonAddFragmentThree;
     private TextView textViewFragmentCount;
 
 
@@ -31,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buttonAddFragment = (Button)findViewById(R.id.buttonAddFragment);
+        buttonAddFragmentOne = (Button)findViewById(R.id.buttonAddFragmentOne);
+        buttonAddFragmentTwo = (Button)findViewById(R.id.buttonAddFragmentTwo);
+        buttonAddFragmentThree = (Button)findViewById(R.id.buttonAddFragmentThree);
         textViewFragmentCount = (TextView)findViewById(R.id.textViewFragmentCount);
 
         fragmentManager=getSupportFragmentManager();
@@ -49,12 +51,9 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG,"Initial BackStackEntryCount: "+fragmentManager.getBackStackEntryCount());
 
 
-        buttonAddFragment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addFragment();
-            }
-        });
+        buttonAddFragmentOne.setOnClickListener(this);
+        buttonAddFragmentTwo.setOnClickListener(this);
+        buttonAddFragmentThree.setOnClickListener(this);
 
     }
 
@@ -95,5 +94,59 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.fragmentContainer,fragment,"demofragment");
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    private void loadFragmentOne(){
+        Fragment fragment;
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
+        if(fragment!=null){
+            fragmentTransaction.remove(fragment);
+        }
+        fragment = new SampleFragment();
+        fragmentTransaction.add(R.id.fragmentContainer,fragment,"demofragment");
+        //fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
+
+
+    }
+
+    private void loadFragmentTwo(){
+
+        Fragment fragment;
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
+        if(fragment!=null){
+            fragmentTransaction.remove(fragment);
+        }
+        fragment = new FragmentTwo();
+        fragmentTransaction.replace(R.id.fragmentContainer,fragment,"demofragment");
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
+    }
+
+    private void loadFragmentThree(){
+        Fragment fragment;
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
+        if(fragment!=null){
+            fragmentTransaction.remove(fragment);
+        }
+        fragment = new FragmentThree();
+        fragmentTransaction.replace(R.id.fragmentContainer,fragment,"demofragment");
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.buttonAddFragmentOne: loadFragmentOne(); break;
+            case R.id.buttonAddFragmentTwo: loadFragmentTwo();break;
+            case R.id.buttonAddFragmentThree: loadFragmentThree();break;
+            default: break;
+        }
     }
 }
