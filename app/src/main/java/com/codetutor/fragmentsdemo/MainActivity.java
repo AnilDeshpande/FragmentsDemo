@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
+
     private Button buttonAddFragmentOne, buttonAddFragmentTwo, buttonAddFragmentThree;
     private TextView textViewFragmentCount;
 
@@ -38,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         fragmentManager=getSupportFragmentManager();
 
-
         textViewFragmentCount.setText("Fragment count in back stack: "+fragmentManager.getBackStackEntryCount());
 
         fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonAddFragmentOne.setOnClickListener(this);
         buttonAddFragmentTwo.setOnClickListener(this);
         buttonAddFragmentThree.setOnClickListener(this);
+
+        loadFragmentOne();
 
     }
 
@@ -84,16 +86,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void addFragment(){
         Fragment fragment;
-        switch (fragmentManager.getBackStackEntryCount()){
-            case 0: fragment = new SampleFragment(); break;
-            case 1: fragment = new FragmentTwo();break;
-            case 2: fragment = new FragmentThree(); break;
-            default: fragment = new SampleFragment(); break;
+        if(fragmentManager.getBackStackEntryCount()>0){
+            switch (fragmentManager.getBackStackEntryCount()){
+                case 0: loadFragmentOne(); break;
+                case 1: loadFragmentTwo();break;
+                case 2: loadFragmentThree(); break;
+                default: loadFragmentOne(); break;
+            }
+        }else {
+            fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
+            if(fragment instanceof SampleFragment){
+                loadFragmentTwo();
+            }else if(fragment instanceof FragmentTwo){
+                loadFragmentThree();
+            }else if(fragment instanceof FragmentThree){
+                loadFragmentOne();
+            }else{
+                loadFragmentOne();
+            }
         }
-        fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragmentContainer,fragment,"demofragment");
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+
     }
 
     private void loadFragmentOne(){
@@ -105,11 +117,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         fragment = new SampleFragment();
         fragmentTransaction.add(R.id.fragmentContainer,fragment,"demofragment");
-        //fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-
-
-
     }
 
     private void loadFragmentTwo(){
@@ -121,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             fragmentTransaction.remove(fragment);
         }
         fragment = new FragmentTwo();
-        fragmentTransaction.replace(R.id.fragmentContainer,fragment,"demofragment");
+        fragmentTransaction.add(R.id.fragmentContainer,fragment,"demofragment");
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
@@ -135,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             fragmentTransaction.remove(fragment);
         }
         fragment = new FragmentThree();
-        fragmentTransaction.replace(R.id.fragmentContainer,fragment,"demofragment");
+        fragmentTransaction.add(R.id.fragmentContainer,fragment,"demofragment");
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
@@ -143,9 +152,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.buttonAddFragmentOne: loadFragmentOne(); break;
-            case R.id.buttonAddFragmentTwo: loadFragmentTwo();break;
-            case R.id.buttonAddFragmentThree: loadFragmentThree();break;
+            case R.id.buttonAddFragmentOne: addFragment(); break;
+            case R.id.buttonAddFragmentTwo: fragmentManager.popBackStack();break;
+            case R.id.buttonAddFragmentThree:
+                fragmentTransaction = fragmentManager.beginTransaction();
+                Fragment fragment=fragmentManager.findFragmentById(R.id.fragmentContainer);
+                if(fragment!=null){
+                    fragmentTransaction.remove(fragment);
+                    fragmentTransaction.commit();
+                }else{
+                    Toast.makeText(this,"No Fragment to remove",Toast.LENGTH_SHORT).show();
+                }
+                break;
             default: break;
         }
     }
