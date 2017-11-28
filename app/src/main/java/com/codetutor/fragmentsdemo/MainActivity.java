@@ -85,15 +85,41 @@ public class MainActivity extends AppCompatActivity {
 
     private void addFragment(){
         Fragment fragment;
-        switch (fragmentManager.getBackStackEntryCount()){
+
+        /*switch (fragmentManager.getBackStackEntryCount()){
             case 0: fragment = new SampleFragment(); break;
             case 1: fragment = new FragmentTwo();break;
             case 2: fragment = new FragmentThree(); break;
             default: fragment = new SampleFragment(); break;
+        }*/
+
+        fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
+        if(fragment instanceof SampleFragment){
+            fragment = new FragmentTwo();
+        }else if(fragment instanceof FragmentTwo){
+            fragment = new FragmentThree();
+        }else if(fragment instanceof FragmentThree){
+            fragment = new SampleFragment();
+        }else{
+            fragment = new SampleFragment();
         }
+
         fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.fragmentContainer,fragment,"demofragment");
-        fragmentTransaction.addToBackStack(null);
+        //fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
+        if(fragment!=null){
+            fragmentTransaction.remove(fragment);
+            fragmentTransaction.commit();
+        }else{
+            super.onBackPressed();
+        }
+
     }
 }
