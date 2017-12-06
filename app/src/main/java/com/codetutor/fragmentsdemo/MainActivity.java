@@ -35,25 +35,20 @@ public class MainActivity extends AppCompatActivity {
         textViewFragmentCount = (TextView)findViewById(R.id.textViewFragmentCount);
 
         fragmentManager=getSupportFragmentManager();
-
-
         textViewFragmentCount.setText("Fragment count in back stack: "+fragmentManager.getBackStackEntryCount());
 
         fragmentManager.addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
             @Override
             public void onBackStackChanged() {
                 textViewFragmentCount.setText("Fragment count in back stack: "+fragmentManager.getBackStackEntryCount());
-                Log.i(TAG,"The backstack status: "+fragmentManager.getBackStackEntryCount());
 
+                Log.i(TAG,"The backstack status: "+fragmentManager.getBackStackEntryCount());
                 for(int index = (fragmentManager.getBackStackEntryCount()-1); index>=0; index--){
                     FragmentManager.BackStackEntry backStackEntryAt= fragmentManager.getBackStackEntryAt(index);
                     Log.i(TAG,""+backStackEntryAt.getName());
                 }
             }
         });
-
-        Log.i(TAG,"Initial BackStackEntryCount: "+fragmentManager.getBackStackEntryCount());
-
 
         buttonAddFragment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,31 +57,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
     private void addFragment(){
