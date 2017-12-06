@@ -27,4 +27,8 @@ public class SampleFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_sample,container,false);
     }
 
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
 }

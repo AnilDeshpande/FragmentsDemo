@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onBackStackChanged() {
                 textViewFragmentCount.setText("Fragment count in back stack: "+fragmentManager.getBackStackEntryCount());
+
             }
         });
 
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         fragment = new SampleFragment();
         fragmentTransaction.add(R.id.fragmentContainer,fragment,"demofragment");
-        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.addToBackStack("Add "+fragment.toString());
         fragmentTransaction.commit();
     }
 
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         fragment = new FragmentTwo();
         fragmentTransaction.add(R.id.fragmentContainer,fragment,"demofragment");
-        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.addToBackStack("Add "+fragment.toString());
         fragmentTransaction.commit();
 
     }
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         fragment = new FragmentThree();
         fragmentTransaction.add(R.id.fragmentContainer,fragment,"demofragment");
-        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.addToBackStack("Add "+fragment.toString());
         fragmentTransaction.commit();
     }
 
@@ -134,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Fragment fragment=fragmentManager.findFragmentById(R.id.fragmentContainer);
                 if(fragment!=null){
                     fragmentTransaction.remove(fragment);
+                    fragmentTransaction.addToBackStack("Remove "+fragment.toString());
                     fragmentTransaction.commit();
                 }else{
                     Toast.makeText(this,"No Fragment to remove",Toast.LENGTH_SHORT).show();
