@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +46,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onBackStackChanged() {
                 textViewFragmentCount.setText("Fragment count in back stack: "+fragmentManager.getBackStackEntryCount());
+
+                Log.i(TAG,"The back stack entry status after each transaction: "+fragmentManager.getBackStackEntryCount());
+
+                for(int index = (fragmentManager.getBackStackEntryCount()-1); index>=0; index--){
+                    FragmentManager.BackStackEntry backStackEntryAt= fragmentManager.getBackStackEntryAt(index);
+                    Log.i(TAG,""+backStackEntryAt.getName());
+                }
 
             }
         });
