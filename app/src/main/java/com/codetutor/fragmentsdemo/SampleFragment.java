@@ -90,4 +90,9 @@ public class SampleFragment extends Fragment {
         Log.i(TAG, FRAGMENT_NAME +" onDetach");
         super.onDetach();
     }
+
+    @Override
+    public String toString() {
+        return SampleFragment.class.getSimpleName();
+    }
 }
