@@ -46,10 +46,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onBackStackChanged() {
                 textViewFragmentCount.setText("Fragment count in back stack: "+fragmentManager.getBackStackEntryCount());
 
-                StringBuilder stringBuilder=new StringBuilder("Current status of transaction back stack: "+fragmentManager.getBackStackEntryCount());
+                StringBuilder stringBuilder=new StringBuilder("Current status of transaction back stack: "+fragmentManager.getBackStackEntryCount()+"\n");
                 for(int i=(fragmentManager.getBackStackEntryCount()-1); i>=0;i--){
                     FragmentManager.BackStackEntry backStackEntry =  fragmentManager.getBackStackEntryAt(i);
-                    stringBuilder.append("\n"+backStackEntry.getName()+"\n");
+                    stringBuilder.append(backStackEntry.getName()+"\n");
                 }
 
                 Log.i(TAG,stringBuilder.toString());
