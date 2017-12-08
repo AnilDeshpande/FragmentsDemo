@@ -41,12 +41,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onBackStackChanged() {
                 textViewFragmentCount.setText("Fragment count in back stack: "+fragmentManager.getBackStackEntryCount());
+                StringBuilder backstackEntryMessage = new StringBuilder("Current status of fragment transaction back stack: "+fragmentManager.getBackStackEntryCount()+"\n");
 
-                Log.i(TAG,"The backstack status: "+fragmentManager.getBackStackEntryCount());
-                for(int index = (fragmentManager.getBackStackEntryCount()-1); index>=0; index--){
-                    FragmentManager.BackStackEntry backStackEntryAt= fragmentManager.getBackStackEntryAt(index);
-                    Log.i(TAG,""+backStackEntryAt.getName());
+                for(int index=(fragmentManager.getBackStackEntryCount()-1); index>=0; index--){
+                   FragmentManager.BackStackEntry entry =  fragmentManager.getBackStackEntryAt(index);
+                    backstackEntryMessage.append(entry.getName()+"\n");
                 }
+                Log.i(TAG,backstackEntryMessage.toString());
             }
         });
 
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentContainer,fragment,"demofragment");
-        fragmentTransaction.addToBackStack("Add "+fragment.toString());
+        fragmentTransaction.addToBackStack("Replace "+fragment.toString());
         fragmentTransaction.commit();
     }
 
