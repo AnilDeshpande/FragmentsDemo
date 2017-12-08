@@ -24,14 +24,14 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonAddFragmentTwo"
+            android:id="@+id/buttonPopFragment"
             android:text="Pop"
             android:layout_weight="1"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonAddFragmentThree"
+            android:id="@+id/buttonRemoveFragment"
             android:text="Remove"
             android:layout_weight="1"/>
 

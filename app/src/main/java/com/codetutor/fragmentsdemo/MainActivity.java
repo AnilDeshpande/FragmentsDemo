@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     FragmentTransaction fragmentTransaction;
 
 
-    private Button buttonAddFragmentOne, buttonAddFragmentTwo, buttonAddFragmentThree;
+    private Button buttonAddFragmentOne, buttonpopFragment, buttonRemoveFragment;
     private TextView textViewFragmentCount;
 
 
@@ -34,8 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         buttonAddFragmentOne = (Button)findViewById(R.id.buttonAddFragmentOne);
-        buttonAddFragmentTwo = (Button)findViewById(R.id.buttonAddFragmentTwo);
-        buttonAddFragmentThree = (Button)findViewById(R.id.buttonAddFragmentThree);
+        buttonpopFragment = (Button)findViewById(R.id.buttonPopFragment);
+        buttonRemoveFragment = (Button)findViewById(R.id.buttonRemoveFragment);
         textViewFragmentCount = (TextView)findViewById(R.id.textViewFragmentCount);
 
         fragmentManager=getSupportFragmentManager();
@@ -47,12 +46,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onBackStackChanged() {
                 textViewFragmentCount.setText("Fragment count in back stack: "+fragmentManager.getBackStackEntryCount());
 
-                Log.i(TAG,"The back stack entry status after each transaction: "+fragmentManager.getBackStackEntryCount());
-
-                for(int index = (fragmentManager.getBackStackEntryCount()-1); index>=0; index--){
-                    FragmentManager.BackStackEntry backStackEntryAt= fragmentManager.getBackStackEntryAt(index);
-                    Log.i(TAG,""+backStackEntryAt.getName());
+                StringBuilder stringBuilder=new StringBuilder("Current status of transaction back stack: "+fragmentManager.getBackStackEntryCount());
+                for(int i=(fragmentManager.getBackStackEntryCount()-1); i>=0;i--){
+                    FragmentManager.BackStackEntry backStackEntry =  fragmentManager.getBackStackEntryAt(i);
+                    stringBuilder.append("\n"+backStackEntry.getName()+"\n");
                 }
+
+                Log.i(TAG,stringBuilder.toString());
 
             }
         });
@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         buttonAddFragmentOne.setOnClickListener(this);
-        buttonAddFragmentTwo.setOnClickListener(this);
-        buttonAddFragmentThree.setOnClickListener(this);
+        buttonpopFragment.setOnClickListener(this);
+        buttonRemoveFragment.setOnClickListener(this);
 
         loadFragmentOne();
 
@@ -137,8 +137,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.buttonAddFragmentOne: addFragment(); break;
-            case R.id.buttonAddFragmentTwo: fragmentManager.popBackStack();break;
-            case R.id.buttonAddFragmentThree:
+            case R.id.buttonPopFragment: fragmentManager.popBackStack();break;
+            case R.id.buttonRemoveFragment:
                 fragmentTransaction = fragmentManager.beginTransaction();
                 Fragment fragment=fragmentManager.findFragmentById(R.id.fragmentContainer);
                 if(fragment!=null){
