@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        Log.i(TAG,"Initial BackStackEntryCount: "+fragmentManager.getBackStackEntryCount());
+        Log.i(COMMON_TAG,"Initial BackStackEntryCount: "+fragmentManager.getBackStackEntryCount());
 
 
         buttonAddFragmentOne.setOnClickListener(this);

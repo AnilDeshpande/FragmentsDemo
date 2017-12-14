@@ -3,6 +3,7 @@ package com.codetutor.fragmentsdemo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,11 @@ import android.view.ViewGroup;
  */
 
 public class FragmentTwo extends Fragment {
+    private static final String COMMON_TAG = "CombinedLifeCycle";
+    private static final String FRAGMENT_NAME = FragmentTwo.class.getSimpleName();
+
+    private static final String TAG = COMMON_TAG;
+
 
     @Nullable
     @Override

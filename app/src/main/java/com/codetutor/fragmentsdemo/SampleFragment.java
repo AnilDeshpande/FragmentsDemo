@@ -18,7 +18,7 @@ public class SampleFragment extends Fragment {
     private static final String COMMON_TAG = "CombinedLifeCycle";
     private static final String FRAGMENT_NAME = SampleFragment.class.getSimpleName();
 
-    private static final String TAG = FRAGMENT_NAME;
+    private static final String TAG = COMMON_TAG;
 
     @Nullable
     @Override
