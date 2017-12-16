@@ -59,12 +59,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Log.i(COMMON_TAG,"Initial BackStackEntryCount: "+fragmentManager.getBackStackEntryCount());
 
-
         buttonAddFragmentOne.setOnClickListener(this);
         buttonpopFragment.setOnClickListener(this);
         buttonRemoveFragment.setOnClickListener(this);
-
-        loadFragmentOne();
 
     }
 
@@ -95,12 +92,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void loadFragmentOne(){
         Fragment fragment;
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
-        if(fragment!=null){
+        fragment = fragmentManager.findFragmentByTag("demofragment");
+        /*if(fragment!=null){
             fragmentTransaction.remove(fragment);
-        }
+        }*/
         fragment = new SampleFragment();
-        fragmentTransaction.add(R.id.fragmentContainer,fragment,"demofragment");
+        fragmentTransaction.replace(R.id.fragmentContainer,fragment,"demofragment");
         fragmentTransaction.addToBackStack("Add "+fragment.toString());
         fragmentTransaction.commit();
     }
@@ -109,12 +106,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Fragment fragment;
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
-        if(fragment!=null){
+        fragment = fragmentManager.findFragmentByTag("demofragment");
+        /*if(fragment!=null){
             fragmentTransaction.remove(fragment);
-        }
+        }*/
         fragment = new FragmentTwo();
-        fragmentTransaction.add(R.id.fragmentContainer,fragment,"demofragment");
+        fragmentTransaction.replace(R.id.fragmentContainer,fragment,"demofragment");
         fragmentTransaction.addToBackStack("Add "+fragment.toString());
         fragmentTransaction.commit();
 
@@ -123,12 +120,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void loadFragmentThree(){
         Fragment fragment;
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
-        if(fragment!=null){
+        fragment = fragmentManager.findFragmentByTag("demofragment");
+        /*if(fragment!=null){
             fragmentTransaction.remove(fragment);
-        }
+        }*/
         fragment = new FragmentThree();
-        fragmentTransaction.add(R.id.fragmentContainer,fragment,"demofragment");
+        fragmentTransaction.replace(R.id.fragmentContainer,fragment,"demofragment");
         fragmentTransaction.addToBackStack("Add "+fragment.toString());
         fragmentTransaction.commit();
     }
@@ -137,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.buttonAddFragmentOne: addFragment(); break;
-            case R.id.buttonPopFragment: fragmentManager.popBackStack();break;
+            case R.id.buttonPopFragment: fragmentManager.popBackStack("Add SampleFragment",FragmentManager.POP_BACK_STACK_INCLUSIVE); break;
             case R.id.buttonRemoveFragment:
                 fragmentTransaction = fragmentManager.beginTransaction();
                 Fragment fragment=fragmentManager.findFragmentById(R.id.fragmentContainer);
