@@ -1,3 +1,55 @@
 <resources>
     <string name="app_name">FragmentsDemo</string>
+
+    <string-array name="countries">
+        <item>India</item>
+        <item>USA</item>
+        <item>Pakistan</item>
+        <item>Bangladesh</item>
+        <item>Egypt</item>
+        <item>Indonesia</item>
+        <item>UK</item>
+        <item>Germany</item>
+    </string-array>
+
+    <string name="India">
+        India is a vast South Asian country with diverse terrain – from Himalayan peaks to Indian Ocean coastline – and history reaching back 5 millennia.
+        In the north, Mughal Empire landmarks include Delhi\’s Red Fort complex and massive Jama Masjid mosque, plus Agra’s iconic Taj Mahal mausoleum.
+        Pilgrims bathe in the Ganges in Varanasi, and Rishikesh is a yoga centre and base for Himalayan trekking.
+    </string>
+    <string name="USA">
+        The U.S. is a country of 50 states covering a vast swath of North America, with Alaska in the northwest and Hawaii extending the nation\’s
+        presence into the Pacific Ocean. Major Atlantic Coast cities are New York, a global finance and culture center, and capital Washington, DC.
+        Midwestern metropolis Chicago is known for influential architecture and on the west coast, Los Angeles\' Hollywood is famed for filmmaking.
+    </string>
+    <string name="Pakistan">
+        Pakistan, officially the Islamic Republic of Pakistan, is a country in South Asia and on junction of West Asia, Central Asia and East Asia.
+        It is the fifth-most populous country with a population exceeding 209,970,000 people.
+    </string>
+    <string name="Bangladesh">
+        Bangladesh, to the east of India on the Bay of Bengal, is a South Asian country marked by lush greenery and many waterways.
+        Its Padma (Ganges), Meghna and Jamuna rivers create fertile plains, and travel by boat is common. On the southern coast, the Sundarbans,
+        an enormous mangrove forest shared with Eastern India, is home to the royal Bengal tiger.
+    </string>
+    <string name="Egypt">
+        Egypt, a country linking northeast Africa with the Middle East, dates to the time of the pharaohs. Millennia-old monuments sit along the
+        fertile Nile River Valley, including Giza\'s colossal Pyramids and Great Sphinx as well as Luxor\'s hieroglyph-lined Karnak Temple and
+        Valley of the Kings tombs. The capital, Cairo, is home to Ottoman landmarks like Muhammad Ali Mosque and the Egyptian Museum, a trove of antiquities.
+    </string>
+    <string name="Indonesia">
+        Indonesia, a Southeast Asian nation made up of thousands of volcanic islands, is home to hundreds of ethnic groups speaking many different languages.
+        It\’s known for beaches, volcanoes, Komodo dragons and jungles sheltering elephants, orangutans and tigers. On the island of Java lies Indonesia\'s
+        vibrant, sprawling capital, Jakarta, and the city of Yogyakarta, known for gamelan music and traditional puppetry.
+    </string>
+    <string name="UK">
+        The United Kingdom, made up of England, Scotland, Wales and Northern Ireland, is an island nation in northwestern Europe.
+        England – birthplace of Shakespeare and The Beatles – is home to the capital, London, a globally influential centre of finance and culture.
+        England is also site of Neolithic Stonehenge, Bath’s Roman spa and centuries-old universities at Oxford and Cambridge.
+    </string>
+    <string name="Germany">
+        Germany is a Western European country with a landscape of forests, rivers, mountain ranges and North Sea beaches.
+        It has over 2 millennia of history. Berlin, its capital, is home to art and nightlife scenes, the Brandenburg Gate and many sites relating to WWII.
+        Munich is known for its Oktoberfest and beer halls, including the 16th-century Hofbräuhaus. Frankfurt, with its skyscrapers,
+        houses the European Central Bank.
+    </string>
 </resources>
