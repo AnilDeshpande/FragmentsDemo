@@ -44,7 +44,7 @@ public class FragmentCountries extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Select Country");
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getString(R.string.app_name)+"->Select Country");
     }
 
     public void setFragmentActionListener(FragmentActionListener fragmentActionListener){
