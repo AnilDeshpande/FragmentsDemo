@@ -21,7 +21,7 @@ import java.lang.ref.WeakReference;
  * Created by anildeshpande on 10/25/17.
  */
 
-public class FragmentCountries extends Fragment{
+public class CountriesFragment extends Fragment{
 
     View rootView;
 

@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
     private void addCountriesFragment(){
         fragmentTransaction=fragmentManager.beginTransaction();
 
-        FragmentCountries countryListFragment=new FragmentCountries();
+        CountriesFragment countryListFragment=new CountriesFragment();
         countryListFragment.setFragmentActionListener(this);
 
         fragmentTransaction.add(R.id.fragmentContainer,countryListFragment);
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
     private void addCountryDescriptionFragment(String countryName){
         fragmentTransaction=fragmentManager.beginTransaction();
 
-        FragmentCountryDescription countryDescriptionFragment=new FragmentCountryDescription();
+        CountryDescriptionFragment countryDescriptionFragment=new CountryDescriptionFragment();
 
         Bundle bundle=new Bundle();
         bundle.putString(FragmentActionListener.KEY_SELECTED_COUNTRY,countryName);

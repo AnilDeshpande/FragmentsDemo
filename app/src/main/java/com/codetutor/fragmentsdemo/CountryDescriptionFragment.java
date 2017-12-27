@@ -17,9 +17,9 @@ import android.widget.TextView;
  * Created by anildeshpande on 11/16/17.
  */
 
-public class FragmentCountryDescription extends Fragment {
+public class CountryDescriptionFragment extends Fragment {
     private static final String COMMON_TAG = "CombinedLifeCycle";
-    private static final String FRAGMENT_NAME = FragmentCountryDescription.class.getSimpleName();
+    private static final String FRAGMENT_NAME = CountryDescriptionFragment.class.getSimpleName();
 
     private static final String TAG = COMMON_TAG;
 
