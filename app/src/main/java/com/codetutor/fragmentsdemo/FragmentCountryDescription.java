@@ -7,7 +7,7 @@ package com.codetutor.fragmentsdemo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +17,9 @@ import android.widget.TextView;
  * Created by anildeshpande on 11/16/17.
  */
 
-public class FragmentTwo extends Fragment {
+public class FragmentCountryDescription extends Fragment {
     private static final String COMMON_TAG = "CombinedLifeCycle";
-    private static final String FRAGMENT_NAME = FragmentTwo.class.getSimpleName();
+    private static final String FRAGMENT_NAME = FragmentCountryDescription.class.getSimpleName();
 
     private static final String TAG = COMMON_TAG;
 
@@ -27,10 +27,13 @@ public class FragmentTwo extends Fragment {
     TextView textViewCountryDescription;
 
 
+    String countryName;
+    String countryDescription;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_sample_two,container,false);
+        rootView = inflater.inflate(R.layout.fragment_country_description,container,false);
         initUI();
         return rootView;
     }
@@ -40,12 +43,18 @@ public class FragmentTwo extends Fragment {
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Bundle bundle = getArguments();
+        countryName = bundle.getString(FragmentActionListener.KEY_SELECTED_COUNTRY,"India");
+        countryDescription = getString(getStringId(countryName));
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
-        Bundle bundle = getArguments();
-        String countryName = bundle.getString("SELECTED_COUNTRY","India");
-
-        textViewCountryDescription.setText(getString(getStringId(countryName)));
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(countryName);
+        textViewCountryDescription.setText(countryDescription);
     }
 
     private int getStringId(String countryName){

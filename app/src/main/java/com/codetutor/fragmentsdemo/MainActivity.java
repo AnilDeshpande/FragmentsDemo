@@ -8,30 +8,37 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity implements FragmentActionListener{
 
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        fragmentManager = getSupportFragmentManager();
         addCountriesFragment();
     }
 
     private void addCountriesFragment(){
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        SampleFragment sampleFragment=new SampleFragment();
-        sampleFragment.setFragmentActionListener(this);
-        fragmentTransaction.add(R.id.fragmentContainer,sampleFragment);
+        fragmentTransaction=fragmentManager.beginTransaction();
+
+        FragmentCountries countryListFragment=new FragmentCountries();
+        countryListFragment.setFragmentActionListener(this);
+
+        fragmentTransaction.add(R.id.fragmentContainer,countryListFragment);
         fragmentTransaction.commit();
     }
 
     private void addCountryDescriptionFragment(String countryName){
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        FragmentTwo sampleFragment=new FragmentTwo();
+        fragmentTransaction=fragmentManager.beginTransaction();
+
+        FragmentCountryDescription countryDescriptionFragment=new FragmentCountryDescription();
+
         Bundle bundle=new Bundle();
-        bundle.putString("SELECTED_COUNTRY",countryName);
-        sampleFragment.setArguments(bundle);
-        fragmentTransaction.add(R.id.fragmentContainer,sampleFragment);
+        bundle.putString(FragmentActionListener.KEY_SELECTED_COUNTRY,countryName);
+        countryDescriptionFragment.setArguments(bundle);
+
+        fragmentTransaction.replace(R.id.fragmentContainer,countryDescriptionFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
