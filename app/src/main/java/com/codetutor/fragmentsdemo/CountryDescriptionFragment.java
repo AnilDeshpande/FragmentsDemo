@@ -45,9 +45,7 @@ public class CountryDescriptionFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Bundle bundle = getArguments();
-        countryName = bundle.getString(FragmentActionListener.KEY_SELECTED_COUNTRY,"India");
-        countryDescription = getString(getStringId(countryName));
+        countryDescription = getString(getStringId("India"));
     }
 
     @Override

@@ -30,7 +30,7 @@ public class CountriesFragment extends Fragment{
     Context context;
     String [] countries;
 
-    FragmentActionListener fragmentActionListener;
+    CallBackInterface callBackInterface;
 
 
     @Nullable
@@ -47,8 +47,8 @@ public class CountriesFragment extends Fragment{
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getString(R.string.app_name)+"->Select Country");
     }
 
-    public void setFragmentActionListener(FragmentActionListener fragmentActionListener){
-        this.fragmentActionListener = fragmentActionListener;
+    public void setCallBackInterface(CallBackInterface callBackInterface){
+        this.callBackInterface = callBackInterface;
     }
 
     private void initUI(){
@@ -62,8 +62,8 @@ public class CountriesFragment extends Fragment{
         listViewCountries.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (fragmentActionListener!=null){
-                    fragmentActionListener.onCountrySelected(countries[i]);
+                if (callBackInterface!=null){
+                    callBackInterface.callBackMethod();
                 }
             }
         });
