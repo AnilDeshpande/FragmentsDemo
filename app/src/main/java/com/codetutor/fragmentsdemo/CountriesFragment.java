@@ -32,7 +32,6 @@ public class CountriesFragment extends Fragment{
 
     CallBackInterface callBackInterface;
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -48,7 +47,7 @@ public class CountriesFragment extends Fragment{
     }
 
     public void setCallBackInterface(CallBackInterface callBackInterface){
-        this.callBackInterface = callBackInterface;
+        this.callBackInterface=callBackInterface;
     }
 
     private void initUI(){
@@ -62,9 +61,9 @@ public class CountriesFragment extends Fragment{
         listViewCountries.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (callBackInterface!=null){
-                    callBackInterface.callBackMethod();
-                }
+            if(callBackInterface!=null){
+                callBackInterface.callBackMethod();
+            }
             }
         });
     }

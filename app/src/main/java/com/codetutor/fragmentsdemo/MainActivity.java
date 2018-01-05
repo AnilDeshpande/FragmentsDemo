@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements CallBackInterface
 
     @Override
     public void callBackMethod() {
-        Toast.makeText(this,"ToDO: Trigger Other Fragment",Toast.LENGTH_SHORT).show();
-        //addCountryDescriptionFragment();
+        addCountryDescriptionFragment();
     }
 }
