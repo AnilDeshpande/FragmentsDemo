@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
         super.onConfigurationChanged(newConfig);
         if(newConfig.orientation ==Configuration.ORIENTATION_LANDSCAPE){
             Log.i("OrintationChange", "landscape");
+
         }else if(newConfig.orientation==Configuration.ORIENTATION_PORTRAIT){
             Log.i("OrintationChange", "portrait");
         }
