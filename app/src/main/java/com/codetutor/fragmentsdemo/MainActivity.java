@@ -1,10 +1,13 @@
 package com.codetutor.fragmentsdemo;
 
 
+import android.content.res.Configuration;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements FragmentActionListener{
 
@@ -17,6 +20,18 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
         setContentView(R.layout.activity_main);
         fragmentManager = getSupportFragmentManager();
         addCountriesFragment();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.i("OrintationChange","MainActivity onSaveInstanceState");
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.i("OrintationChange","MainActivity onSaveInstanceState");
     }
 
     private void addCountriesFragment(){
@@ -46,5 +61,15 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
     @Override
     public void onCountrySelected(String country) {
         addCountryDescriptionFragment(country);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if(newConfig.orientation ==Configuration.ORIENTATION_LANDSCAPE){
+            Log.i("OrintationChange", "landscape");
+        }else if(newConfig.orientation==Configuration.ORIENTATION_PORTRAIT){
+            Log.i("OrintationChange", "portrait");
+        }
     }
 }
