@@ -13,9 +13,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import java.lang.ref.WeakReference;
 
 /**
  * Created by anildeshpande on 10/25/17.
@@ -64,7 +61,7 @@ public class CountriesFragment extends Fragment{
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (fragmentActionListener!=null){
                     Bundle bundle = new Bundle();
-                    bundle.putInt(FragmentActionListener.ACTION_KEY, FragmentActionListener.ACTION_COUNTRY_SELECTED);
+                    bundle.putInt(FragmentActionListener.ACTION_KEY, FragmentActionListener.ACTION_VALUE_COUNTRY_SELECTED);
                     bundle.putString(FragmentActionListener.KEY_SELECTED_COUNTRY, countries[i]);
                     fragmentActionListener.onActionPerformed(bundle);
                 }

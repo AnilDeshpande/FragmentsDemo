@@ -29,20 +29,6 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
         fragmentTransaction.commit();
     }
 
-    private void addCountryDescriptionFragment(String countryName){
-        fragmentTransaction=fragmentManager.beginTransaction();
-
-        CountryDescriptionFragment countryDescriptionFragment=new CountryDescriptionFragment();
-
-        Bundle bundle=new Bundle();
-        bundle.putString(FragmentActionListener.KEY_SELECTED_COUNTRY,countryName);
-        countryDescriptionFragment.setArguments(bundle);
-
-        fragmentTransaction.replace(R.id.fragmentContainer,countryDescriptionFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
-
     private void addCountryDescriptionFragment(Bundle bundle){
         fragmentTransaction=fragmentManager.beginTransaction();
 
@@ -59,12 +45,7 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
     public void onActionPerformed(Bundle bundle) {
         int actionPerformed = bundle.getInt(FragmentActionListener.ACTION_KEY);
         switch (actionPerformed){
-            case FragmentActionListener.ACTION_COUNTRY_SELECTED: addCountryDescriptionFragment(bundle);
+            case FragmentActionListener.ACTION_VALUE_COUNTRY_SELECTED: addCountryDescriptionFragment(bundle);
         }
-    }
-
-    @Override
-    public void onCountrySelected(String country) {
-        addCountryDescriptionFragment(country);
     }
 }
