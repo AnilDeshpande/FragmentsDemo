@@ -63,7 +63,10 @@ public class CountriesFragment extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (fragmentActionListener!=null){
-                    fragmentActionListener.onCountrySelected(countries[i]);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(FragmentActionListener.ACTION_KEY, FragmentActionListener.ACTION_COUNTRY_SELECTED);
+                    bundle.putString(FragmentActionListener.KEY_SELECTED_COUNTRY, countries[i]);
+                    fragmentActionListener.onActionPerformed(bundle);
                 }
             }
         });
