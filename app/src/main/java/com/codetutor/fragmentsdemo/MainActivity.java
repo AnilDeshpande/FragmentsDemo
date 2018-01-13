@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
     public void onActionPerformed(Bundle bundle) {
         int actionPerformed = bundle.getInt(FragmentActionListener.ACTION_KEY);
         switch (actionPerformed){
-            case FragmentActionListener.ACTION_VALUE_COUNTRY_SELECTED: addCountryDescriptionFragment(bundle);
+            case FragmentActionListener.ACTION_VALUE_COUNTRY_SELECTED: addCountryDescriptionFragment(bundle); break;
         }
     }
 }
