@@ -13,7 +13,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements FragmentActionListener{
 
     private static final String COMMON_TAG = "OrintationChange";
-    private static final String FRAGMENT_NAME = CountryDescriptionFragment.class.getSimpleName();
+    private static final String ACTIVITY_NAME = MainActivity.class.getSimpleName();
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;

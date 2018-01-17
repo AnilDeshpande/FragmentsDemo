@@ -25,7 +25,7 @@ import java.lang.ref.WeakReference;
 public class CountriesFragment extends Fragment{
 
     private static final String COMMON_TAG = "OrintationChange";
-    private static final String FRAGMENT_NAME = CountryDescriptionFragment.class.getSimpleName();
+    private static final String FRAGMENT_NAME = CountriesFragment.class.getSimpleName();
 
     View rootView;
 
