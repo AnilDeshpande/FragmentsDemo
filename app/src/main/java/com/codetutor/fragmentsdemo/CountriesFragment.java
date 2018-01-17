@@ -24,6 +24,9 @@ import java.lang.ref.WeakReference;
 
 public class CountriesFragment extends Fragment{
 
+    private static final String COMMON_TAG = "OrintationChange";
+    private static final String FRAGMENT_NAME = CountriesFragment.class.getSimpleName();
+
     View rootView;
 
     ListView listViewCountries;
@@ -50,7 +53,7 @@ public class CountriesFragment extends Fragment{
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.i("OrintationChange","CountriesFragment onSaveInstanceState");
+        Log.i(COMMON_TAG,"CountriesFragment onSaveInstanceState");
     }
 
     @Override

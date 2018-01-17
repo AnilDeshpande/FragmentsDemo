@@ -19,7 +19,7 @@ import android.widget.TextView;
  */
 
 public class CountryDescriptionFragment extends Fragment {
-    private static final String COMMON_TAG = "CombinedLifeCycle";
+    private static final String COMMON_TAG = "OrintationChange";
     private static final String FRAGMENT_NAME = CountryDescriptionFragment.class.getSimpleName();
 
     private static final String TAG = COMMON_TAG;
@@ -52,7 +52,7 @@ public class CountryDescriptionFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.i("OrintationChange","CountryDescriptionFragment onSaveInstanceState");
+        Log.i(COMMON_TAG,"CountryDescriptionFragment onSaveInstanceState");
     }
 
     @Override

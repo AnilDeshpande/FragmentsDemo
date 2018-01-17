@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements FragmentActionListener{
 
+    private static final String COMMON_TAG = "OrintationChange";
+    private static final String ACTIVITY_NAME = MainActivity.class.getSimpleName();
+
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
@@ -25,13 +28,13 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.i("OrintationChange","MainActivity onSaveInstanceState");
+        Log.i(COMMON_TAG,"MainActivity onSaveInstanceState");
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        Log.i("OrintationChange","MainActivity onSaveInstanceState");
+        Log.i(COMMON_TAG,"MainActivity onSaveInstanceState");
     }
 
     private void addCountriesFragment(){
@@ -67,9 +70,9 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if(newConfig.orientation ==Configuration.ORIENTATION_LANDSCAPE){
-            Log.i("OrintationChange", "landscape");
+            Log.i(COMMON_TAG, "landscape");
         }else if(newConfig.orientation==Configuration.ORIENTATION_PORTRAIT){
-            Log.i("OrintationChange", "portrait");
+            Log.i(COMMON_TAG, "portrait");
         }
     }
 }
