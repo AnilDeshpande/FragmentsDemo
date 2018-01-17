@@ -24,6 +24,9 @@ import java.lang.ref.WeakReference;
 
 public class CountriesFragment extends Fragment{
 
+    private static final String COMMON_TAG = "OrintationChange";
+    private static final String FRAGMENT_NAME = CountryDescriptionFragment.class.getSimpleName();
+
     View rootView;
 
     ListView listViewCountries;
@@ -48,15 +51,18 @@ public class CountriesFragment extends Fragment{
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Log.i("OrintationChange","CountriesFragment onSaveInstanceState");
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(getString(R.string.app_name)+"->Select Country");
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if(savedInstanceState!=null){
+            Log.i(FRAGMENT_NAME,"The restored value is : "+savedInstanceState.getString(COMMON_TAG,"Message not found"));
+            fragmentActionListener = (MainActivity)getActivity();
+        }
     }
 
     public void setFragmentActionListener(FragmentActionListener fragmentActionListener){

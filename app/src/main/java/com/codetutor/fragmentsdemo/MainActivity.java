@@ -2,6 +2,7 @@ package com.codetutor.fragmentsdemo;
 
 
 import android.content.res.Configuration;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements FragmentActionListener{
 
+    private static final String COMMON_TAG = "OrintationChange";
+    private static final String FRAGMENT_NAME = CountryDescriptionFragment.class.getSimpleName();
+
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
@@ -18,23 +22,13 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fragmentManager = getSupportFragmentManager();
-        addCountriesFragment();
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Log.i("OrintationChange","MainActivity onSaveInstanceState");
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        Log.i("OrintationChange","MainActivity onSaveInstanceState");
+        if(savedInstanceState==null){
+            addCountriesFragment();
+        }
     }
 
     private void addCountriesFragment(){
+        fragmentManager = getSupportFragmentManager();
         fragmentTransaction=fragmentManager.beginTransaction();
 
         CountriesFragment countryListFragment=new CountriesFragment();
@@ -44,7 +38,18 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
         fragmentTransaction.commit();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
     private void addCountryDescriptionFragment(String countryName){
+        fragmentManager = getSupportFragmentManager();
         fragmentTransaction=fragmentManager.beginTransaction();
 
         CountryDescriptionFragment countryDescriptionFragment=new CountryDescriptionFragment();
@@ -67,9 +72,9 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if(newConfig.orientation ==Configuration.ORIENTATION_LANDSCAPE){
-            Log.i("OrintationChange", "landscape");
+            Log.i(COMMON_TAG, "landscape");
         }else if(newConfig.orientation==Configuration.ORIENTATION_PORTRAIT){
-            Log.i("OrintationChange", "portrait");
+            Log.i(COMMON_TAG, "portrait");
         }
     }
 }

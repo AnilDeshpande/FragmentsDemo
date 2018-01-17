@@ -19,7 +19,7 @@ import android.widget.TextView;
  */
 
 public class CountryDescriptionFragment extends Fragment {
-    private static final String COMMON_TAG = "CombinedLifeCycle";
+    private static final String COMMON_TAG = "OrintationChange";
     private static final String FRAGMENT_NAME = CountryDescriptionFragment.class.getSimpleName();
 
     private static final String TAG = COMMON_TAG;
@@ -49,11 +49,11 @@ public class CountryDescriptionFragment extends Fragment {
         textViewCountryDescription = (TextView)rootView.findViewById(R.id.textViewCountryDescription);
     }
 
-    @Override
+    /*@Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.i("OrintationChange","CountryDescriptionFragment onSaveInstanceState");
-    }
+        Log.i(COMMON_TAG,"CountryDescriptionFragment onSaveInstanceState");
+    }*/
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -61,6 +61,10 @@ public class CountryDescriptionFragment extends Fragment {
         Bundle bundle = getArguments();
         countryName = bundle.getString(FragmentActionListener.KEY_SELECTED_COUNTRY,"India");
         countryDescription = getString(getStringId(countryName));
+        if(savedInstanceState!=null){
+            Log.i(FRAGMENT_NAME,"The restored value is : "+savedInstanceState.getString(COMMON_TAG,"Message not found"));
+        }
+
     }
 
     @Override
