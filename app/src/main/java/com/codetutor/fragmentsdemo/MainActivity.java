@@ -38,16 +38,6 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
         fragmentTransaction.commit();
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-    }
-
     private void addCountryDescriptionFragment(String countryName){
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction=fragmentManager.beginTransaction();

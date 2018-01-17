@@ -49,21 +49,12 @@ public class CountryDescriptionFragment extends Fragment {
         textViewCountryDescription = (TextView)rootView.findViewById(R.id.textViewCountryDescription);
     }
 
-    /*@Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Log.i(COMMON_TAG,"CountryDescriptionFragment onSaveInstanceState");
-    }*/
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Bundle bundle = getArguments();
         countryName = bundle.getString(FragmentActionListener.KEY_SELECTED_COUNTRY,"India");
         countryDescription = getString(getStringId(countryName));
-        if(savedInstanceState!=null){
-            Log.i(FRAGMENT_NAME,"The restored value is : "+savedInstanceState.getString(COMMON_TAG,"Message not found"));
-        }
 
     }
 

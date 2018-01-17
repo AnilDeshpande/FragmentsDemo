@@ -60,7 +60,6 @@ public class CountriesFragment extends Fragment{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if(savedInstanceState!=null){
-            Log.i(FRAGMENT_NAME,"The restored value is : "+savedInstanceState.getString(COMMON_TAG,"Message not found"));
             fragmentActionListener = (MainActivity)getActivity();
         }
     }
