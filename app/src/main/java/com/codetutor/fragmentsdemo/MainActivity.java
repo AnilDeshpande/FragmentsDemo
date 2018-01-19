@@ -22,13 +22,14 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        fragmentManager = getSupportFragmentManager();
         if(savedInstanceState==null){
             addCountriesFragment();
         }
     }
 
     private void addCountriesFragment(){
-        fragmentManager = getSupportFragmentManager();
+
         fragmentTransaction=fragmentManager.beginTransaction();
 
         CountriesFragment countryListFragment=new CountriesFragment();
@@ -39,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
     }
 
     private void addCountryDescriptionFragment(String countryName){
-        fragmentManager = getSupportFragmentManager();
         fragmentTransaction=fragmentManager.beginTransaction();
 
         CountryDescriptionFragment countryDescriptionFragment=new CountryDescriptionFragment();
