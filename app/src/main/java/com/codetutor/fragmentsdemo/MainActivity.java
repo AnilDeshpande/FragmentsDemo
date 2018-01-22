@@ -25,16 +25,11 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
         if(findViewById(R.id.activity_main_portrait)!= null){
             if(savedInstanceState==null){
                 addCountriesFragment();
-            }else{
-                addCountryDescriptionFragment(savedInstanceState.getString("selectedCountry",null));
             }
         }else if (findViewById(R.id.activity_main_landscape)!=null){
             addCountriesFragment();
             if(savedInstanceState==null){
                 addCountryDescriptionFragment(R.id.fragmentContainer2,"India");
-            }else{
-
-                addCountryDescriptionFragment(R.id.fragmentContainer2,savedInstanceState.getString("selectedCountry",null));
             }
         }
 
@@ -108,11 +103,23 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        setContentView(R.layout.activity_main);
         if(newConfig.orientation ==Configuration.ORIENTATION_LANDSCAPE){
             Log.i("OrintationChange", "landscape");
+            addCountriesFragment();
+            if(selectedCountry==null){
+                addCountryDescriptionFragment("India");
+            }else {
+                addCountryDescriptionFragment(R.id.fragmentContainer2, selectedCountry);
+            }
 
         }else if(newConfig.orientation==Configuration.ORIENTATION_PORTRAIT){
             Log.i("OrintationChange", "portrait");
+            if(selectedCountry==null){
+                addCountriesFragment();
+            }else {
+                addCountryDescriptionFragment(selectedCountry);
+            }
         }
     }
 }
