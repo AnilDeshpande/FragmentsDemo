@@ -52,14 +52,22 @@ public class CountryDescriptionFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Log.i("OrintationChange","CountryDescriptionFragment onSaveInstanceState");
+        outState.putString("selectedCountry",countryName);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Bundle bundle = getArguments();
-        countryName = bundle.getString(FragmentActionListener.KEY_SELECTED_COUNTRY,"India");
-        countryDescription = getString(getStringId(countryName));
+        if(savedInstanceState!=null){
+            countryName = savedInstanceState.getString("selectedCountry",countryName);
+            countryDescription = getString(getStringId(countryName));
+        }else {
+            Bundle bundle = getArguments();
+            countryName = bundle.getString(FragmentActionListener.KEY_SELECTED_COUNTRY,"India");
+            countryDescription = getString(getStringId(countryName));
+        }
+
+
     }
 
     @Override
