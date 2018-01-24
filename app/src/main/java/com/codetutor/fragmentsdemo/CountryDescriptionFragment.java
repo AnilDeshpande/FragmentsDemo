@@ -54,7 +54,6 @@ public class CountryDescriptionFragment extends Fragment {
         Bundle bundle = getArguments();
         countryName = bundle.getString(FragmentActionListener.KEY_SELECTED_COUNTRY,"India");
         countryDescription = getString(getStringId(countryName));
-
     }
 
     @Override
