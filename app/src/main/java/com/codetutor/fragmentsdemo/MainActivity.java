@@ -23,14 +23,10 @@ public class MainActivity extends AppCompatActivity implements FragmentActionLis
         fragmentManager = getSupportFragmentManager();
 
         if(findViewById(R.id.activity_main_portrait)!= null){
-            if(savedInstanceState==null){
-                addCountriesFragment();
-            }
+            addCountriesFragment();
         }else if (findViewById(R.id.activity_main_landscape)!=null){
             addCountriesFragment();
-            if(savedInstanceState==null){
-                addCountryDescriptionFragment(R.id.fragmentContainer2,"India");
-            }
+            addCountryDescriptionFragment(R.id.fragmentContainer2,"India");
         }
 
     }
