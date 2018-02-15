@@ -6,4 +6,6 @@
     <color name="activity_color">#79FDFE</color>
     <color name="fragment_color">#1A98FC</color>
     <color name="fragment_two_color">#3F18FC</color>
+    <color name="sw600dpcolor">#F0ABA1</color>
+    <color name="sw720dpcolor">#DC0BFF</color>
 </resources>
